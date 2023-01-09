@@ -5,9 +5,9 @@ from api.core import security
 from api.models.model_cf import CFRequest, CFResponse
 from api.services.service_cf import Recommendation
 
-router = APIRouter()
+router_cf = APIRouter()
 
-@router.post("/collaborativeFilter", response_model=CFResponse, name="collaborative filter")
+@router_cf.post("/collaborativeFilter", response_model=CFResponse, name="collaborative filter")
 async def post_recommend(
     request: Request,
     authenticated: bool = Depends(security.validate_request),
