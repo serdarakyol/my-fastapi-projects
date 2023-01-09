@@ -1,9 +1,9 @@
+fastapi
 numba
 numpy
 pandas
 loguru
 uvicorn
-fastapi
 scikit-learn
 gdown
 starlette
