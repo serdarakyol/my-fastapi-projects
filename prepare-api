@@ -1,10 +1,10 @@
 #!/bin/bash
 #install pip and virtualenv
-if [ ! -x "$(command -v virtualenv)" ]; then
+if [ ! -x "$(command -v pip3)" ]; then
     echo "Pip is installing"
-    sudo apt-get install python3-pip
+    apt-get install python-pip
     echo "Virtualenv is installing"
-    sudo pip3 install virtualenv 
+    pip3 install virtualenv 
 fi
 
 # create and fill .env file if not exist
@@ -18,7 +18,7 @@ fi
 
 # create virtual env if not created
 if ! [ -d venv ]; then
-    virtualenv venv
+    python3 -m venv venv
     source venv/bin/activate
 
     # install requirements.txt
