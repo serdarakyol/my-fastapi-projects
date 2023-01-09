@@ -6,3 +6,6 @@ uvicorn
 fastapi
 scikit-learn
 gdown
+starlette
+openpyxl
+python-multipart
