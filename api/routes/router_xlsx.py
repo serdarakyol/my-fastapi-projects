@@ -1,4 +1,3 @@
-from starlette.requests import Request
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import FileResponse
 
@@ -11,7 +10,6 @@ ROOT_DIR = str(Path(__file__).parent.parent.parent)
 
 @router_xlsx.post("/process_xlsx", name="Extract and process xlsx data")
 async def upload_files(
-    request: Request,
     files: list[UploadFile] = File(description="Upload files"),
 ):
     processer = FileProcess(files=files, root_dir=ROOT_DIR)
