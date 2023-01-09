@@ -1,0 +1,41 @@
+#!/bin/bash
+#install pip and virtualenv
+if [ ! -x "$(command -v virtualenv)" ]; then
+    echo "Pip is installing"
+    sudo apt-get install python3-pip
+    echo "Virtualenv is installing"
+    sudo pip3 install virtualenv 
+fi
+
+# create and fill .env file if not exist
+if [ ! -f .env ]; then
+touch .env
+cat << EOF > .env
+IS_DEBUG=False
+API_KEY='serdarakyol55@outlook.com'
+EOF
+fi 
+
+# create virtual env if not created
+if ! [ -d venv ]; then
+    virtualenv venv
+    source venv/bin/activate
+
+    # install requirements.txt
+    pip install -r api/requirements.txt
+fi
+
+# create data folder
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+CF_DATA_PATH=${SCRIPT_DIR}/api/data/cf_data.pkl
+META_JSON_PATH=${SCRIPT_DIR}/api/data/meta.json
+
+if [[ ! -f ${CF_DATA_PATH} || ! -f ${META_JSON_PATH} ]]; then
+    # create folder
+    mkdir ${SCRIPT_DIR}/api/data
+    # install files in data
+    echo "Downloading collaborative filter data to ${CF_DATA_PATH}"
+    gdown https://drive.google.com/uc?id=1iB4UmDc8Bcc4OhLbMdb-7ZflhRRFSBae -O ${CF_DATA_PATH}
+    echo "Downloading products data to ${META_JSON_PATH}"
+    gdown https://drive.google.com/uc?id=1tQezbs22O_-ZtzOhf6GUAs5noDPRdiFU -O ${META_JSON_PATH}
+fi
