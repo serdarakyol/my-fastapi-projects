@@ -8,7 +8,7 @@ class FileProcess:
 
     def __init__(self, files, root_dir) -> None:
         self.files = files
-        self.data_store_path = f"{root_dir}/sabiduria_tool_api/data/"
+        self.data_store_path = f"{root_dir}/api/dist/"
         self.root_dir = root_dir
         self.final_data = {
             "Ad": [],

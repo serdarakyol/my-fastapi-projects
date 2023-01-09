@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from api.core.config import API_PREFIX, APP_NAME, APP_VERSION, IS_DEBUG
 from api.core.event_handler import start_app_handler, stop_app_handler
 from api.routes.router_cf import router_cf
-from api.routes.router_extract_data import router_xlsx
+from api.routes.router_xlsx import router_xlsx
 
 def get_app() -> FastAPI:
     fast_app = FastAPI(title=APP_NAME, version=APP_VERSION, debug=IS_DEBUG)
